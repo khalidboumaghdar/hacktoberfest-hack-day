@@ -1,0 +1,103 @@
+A New Piscine Begins
+
+ 
+
+From validation day to the first coding challenges and Rush projects, staff and student volunteers supported the new cohort through the opening stages of their Piscine journey.
+
+ 
+
+1337 Summer Competition
+
+ 
+
+The campus’s new sports fields hosted a multi-sport tournament featuring football, basketball, padel, handball, and volleyball, with students and staff joining the action.
+
+Supporting the New Pool Cohort
+
+ 
+
+After their exams, poolers joined support sessions, game nights, and a movie night designed to help them connect, recharge, and move forward together.
+
+ 
+
+Liga 5.0
+
+ 
+
+Organized by the Athleets Club, the fifth edition of 1337 La Liga brought weeks of football, team spirit, and friendly competition to the campus.
+
+The Piscine Experience
+
+ 
+
+1337 MED welcomed its new poolers into four weeks of coding, problem-solving, peer learning, and resilience—the first step toward joining the 1337 community.
+
+TIG Got Talent
+ 
+
+During the Piscine, poolers who received a TIG were invited to step onto the stage and share a creative performance, bringing hidden talents and a playful energy to campus.
+
+ 
+
+Clubs Move from Training to Action
+
+MAP Game Dev, Oblivion Robotics, and LEETCOMPETE transformed their training into projects, hackathons, and competitions, while ZeroOps began exploring a cross-campus collaboration.
+
+Benguerir 
+
+ 
+
+The fifth edition of 1337 La Liga transformed the football field into a gathering space for players and supporters throughout an eight-week competition.
+
+Game Nights & Movie Night
+
+📍 Benguerir 
+
+ 
+
+Leets Events created welcoming breaks after the Pool exams, helping students unwind, meet their peers, and face the next challenge with renewed energy.
+
+Benguerir | Leet E-Sports
+
+ 
+
+Students managed virtual teams, followed weekly performances, and competed through a season-long league built around football, strategy, and friendly rivalry.
+
+Clubs: From Training to Execution
+
+📍 Rabat
+
+ 
+
+MAP Game Dev launched MAP00, Oblivion Robotics concluded its training with a robotics hackathon, and LEETCOMPETE tested bootcamp skills through a timed programming contest.
+
+Robotics Hackathon
+
+📍 Rabat | Oblivion Robotics Club
+
+ 
+
+Teams designed, assembled, and programmed autonomous line-following robots while testing maze-solving, path-planning, and optimization techniques.
+
+SPORTTIMES — No More Ghost Matches
+
+📍 Built by Mohamed El Hadj
+
+Football matches often disappear inside crowded group chats—players miss updates, confirmations remain unclear, and games fall apart.
+
+SPORTTIMES is a mobile app designed to make sports organization visual and social. Players can discover matches, view formations and participants, join communities, manage lineups, and organize tournaments in one place.
+
+The product is currently in development, with 1337 planned as its first campus launch.
+
+Kerberos: Students Teaching Students
+
+📍 Khouribga
+
+ 
+
+Student Omar Rakib hosted a peer session introducing Kerberos authentication, Active Directory environments, and practical cybersecurity use cases.
+
+ 
+
+A strong example of the 1337 spirit: students teaching students.
+
