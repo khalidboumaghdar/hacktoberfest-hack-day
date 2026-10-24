@@ -59,20 +59,6 @@ class Chunker(ABC):
         cls.processed_data.append(data)
         cls.list_of_chunks.append(content)
 
-
-class PythonChunker(Chunker):
-    def chunk(self, path: Path, max_chunk_size: int = 2000) -> None:
-        """Chunk a Python file according to Python syntax."""
-        splitter = RecursiveCharacterTextSplitter.from_language(
-            language=Language.PYTHON,
-            chunk_size=max_chunk_size,
-            chunk_overlap=0,
-            add_start_index=True,
-        )
-
-        self._format_data(path, splitter)
-
-
 class TextChunker(Chunker):
     def chunk(self, path: Path, max_chunk_size: int = 2000) -> None:
         """Chunk a text file while preserving separators."""

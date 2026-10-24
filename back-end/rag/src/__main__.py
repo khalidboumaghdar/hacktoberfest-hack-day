@@ -1,7 +1,7 @@
 from .file_scanner import FileScanner
 from .file_manager import FileManager
-from .chunking import TextChunker, PythonChunker, MarkdownChunker
-from .data_model import MinimalSource, StudentSearchResults, RagDataset, StudentSearchResultsAndAnswer
+from .chunking import TextChunker, MarkdownChunker
+from .data_model import MinimalSource
 from .bm25 import bm25
 from .helpers import validate_number
 from .answer_generation import answer_generator
@@ -28,7 +28,6 @@ class CLI:
         validate_number(2000, max_chunk_size)
         meta_data, files_by_extension = self.scanner.scan("data/raw/vllm-0.10.1")
         extention = {
-            ".py" : PythonChunker(),
             ".txt" : TextChunker(),
             ".md" : MarkdownChunker(),
         }
@@ -44,7 +43,7 @@ class CLI:
                     pbar_chunk.set_postfix_str(f"{int(rate)} file/s")
         pbar_chunk.close()
         
-        chunker_obj = extention[".py"]
+        chunker_obj = extention[".md"]
         processed_data = chunker_obj.get_processed_data()
         for data in processed_data:
             MinimalSource(**data)

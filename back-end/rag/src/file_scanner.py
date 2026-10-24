@@ -13,7 +13,6 @@ class FileScanner:
         self.files_by_extension: Dict[str, List[Path]] = {
             ".md": [],
             ".txt": [],
-            ".py": [],
         }
 
     def __check_dir_exist(self, root_dir: str) -> Path:
