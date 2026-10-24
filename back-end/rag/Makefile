@@ -11,6 +11,9 @@ install:
 index:
 	${UV} run $(PYTHON) -m src index --max_chunk_size 2000
 
+index_semantic:
+	uv run python -m src index_semantic --max_chunk_size 2000
+
 run:
 	${UV} run $(PYTHON) -m src index --max_chunk_size 2000
 

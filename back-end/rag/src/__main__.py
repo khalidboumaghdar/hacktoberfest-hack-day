@@ -3,99 +3,89 @@ from .file_manager import FileManager
 from .chunking import TextChunker, MarkdownChunker
 from .data_model import MinimalSource
 from .bm25 import bm25
+from .semantic_search import SemanticSearch  # <--- زدناها هنا
 from .helpers import validate_number
 from .answer_generation import answer_generator
 
-from pydantic import ValidationError
-from time import sleep
 from tqdm import tqdm
 import fire
-from json import JSONDecodeError, dump
 
 
-import numpy as np
-
-# the animation show 31591.02it/s, 31595 chunk/s i must
-# remove the 31591.02it/s and leave only 31595 chunk/s
-# should i handle the part if the data/processed/minimal_source.json has no conten because now content is required
 class CLI:
     def __init__(self):
         self.bm25 = bm25()
+        self.semantic = SemanticSearch()  # <--- instance ديال semantic search
         self.scanner = FileScanner()
         self.file_manager = FileManager()
 
-    def index(self, max_chunk_size: int = 2000) -> None:
+    def _chunk_corpus(self, max_chunk_size: int = 2000):
+        """Helper باش ما نعودوش نفس كود الـ chunking فـ BM25 و Semantic."""
         validate_number(2000, max_chunk_size)
         meta_data, files_by_extension = self.scanner.scan("data/raw/vllm-0.10.1")
-        extention = {
-            ".txt" : TextChunker(),
-            ".md" : MarkdownChunker(),
+        extension = {
+            ".txt": TextChunker(),
+            ".md": MarkdownChunker(),
         }
         pbar_chunk = tqdm(total=meta_data["chunked_files"], desc="Chunking: ")
         for ext, files in files_by_extension.items():
             for file in files:
-                extention[ext].chunk(file, max_chunk_size)
+                extension[ext].chunk(file, max_chunk_size)
                 pbar_chunk.update(1)
-                #the issue is that {rate} is None when the progress bar starts
-                # (before any items are processed), and you can't format None with .0f
-                if pbar_chunk.n > 0:
-                    rate = pbar_chunk.n / pbar_chunk.format_dict['elapsed']
-                    pbar_chunk.set_postfix_str(f"{int(rate)} file/s")
         pbar_chunk.close()
-        
-        chunker_obj = extention[".md"]
+
+        chunker_obj = extension[".md"]
         processed_data = chunker_obj.get_processed_data()
         for data in processed_data:
             MinimalSource(**data)
-        self.bm25.indexing(chunker_obj.list_of_chunks, processed_data)
+        return chunker_obj.list_of_chunks, processed_data
 
-    def __retreival_wrapper(self, query: str, k: int) -> list[dict]:
+    # --- BM25 Commands ---
+    def index(self, max_chunk_size: int = 2000) -> None:
+        chunks, processed_data = self._chunk_corpus(max_chunk_size)
+        self.bm25.indexing(chunks, processed_data)
+
+    def search(self, query: str, k: int = 10) -> list[str]:
         processed_data = self.scanner.read("data/processed/minimal_source.json")
-        data_len = len(processed_data)
-        validate_number(data_len, k)
-        results  = self.bm25.retreaving(query, k)
-        return [processed_data[element["id"]] for element in results[0]]
+        validate_number(len(processed_data), k)
+        results = self.bm25.retreaving(query, k)
+        minimal_source = [processed_data[element["id"]] for element in results[0]]
+        return [
+            f"{el['file_path']} [{el['first_character_index']}:{el['last_character_index']}]"
+            for el in minimal_source
+        ]
 
-    def search(self, query: str , k: int = 10) -> None:
-        minimal_source =  self.__retreival_wrapper(query, k)
-        source = [f"{element['file_path']} [{element['first_character_index'] }:{element['last_character_index'] }]" for element in minimal_source]
-        return source
+    # --- Semantic Search Commands ---
+    def index_semantic(self, max_chunk_size: int = 2000) -> None:
+        """صاوب الـ embeddings لجميع الـ chunks وخزنهم."""
+        chunks, processed_data = self._chunk_corpus(max_chunk_size)
+        self.semantic.indexing(chunks, processed_data)
 
-    def answer(self, query: str , k: int = 10):
-        minimal_source =  self.__retreival_wrapper(query, k)
+    def search_semantic(self, query: str, k: int = 10) -> list[str]:
+        """بحث دلالي (Semantic Search) كيرجع البلايص ديال الـ chunks المناسبة."""
+        processed_data = self.scanner.read("data/processed/minimal_source.json")
+        validate_number(len(processed_data), k)
+
+        top_indices = self.semantic.retrieving(query, k)
+        minimal_source = [processed_data[i] for i in top_indices]
+
+        return [
+            f"{el['file_path']} [{el['first_character_index']}:{el['last_character_index']}]"
+            for el in minimal_source
+        ]
+
+    def answer_semantic(self, query: str, k: int = 10) -> str:
+        """RAG كامل بالـ Semantic Search."""
+        processed_data = self.scanner.read("data/processed/minimal_source.json")
+        validate_number(len(processed_data), k)
+
+        top_indices = self.semantic.retrieving(query, k)
+        minimal_source = [processed_data[i] for i in top_indices]
         content = self.scanner.resolve_contents(minimal_source)
         return answer_generator(query, content)
-        
-        # print(content)
-
-
 
 
 def main() -> None:
     fire.Fire(CLI)
-    # try:
-    #     fire.Fire(CLI)
-    # except KeyboardInterrupt:
-    #     print("\nCtrl+C detected! Exiting gracefully...")
-    # except JSONDecodeError as e:
-    #     print(f"\nFailed to decode JSON: {e.msg}")
-    #     print(f"\nError happened at line {e.lineno}, column {e.colno}")
-    # except KeyError as e:
-    #     print(f"\nmissing key: {e}")
-    # except ValidationError as e:
-    #     for error in e.errors():
-    #         field = " -> ".join(str(loc) for loc in error["loc"])
-    #         print(f"\nError in '{field}': {error['msg']} (Received: {error.get('input')})")
-    # except ValueError as e:
-    #     print(f"\nThe exception message is: {e}")
-    # except FileNotFoundError as error:
-    #     print(error)
-    # except PermissionError as error:
-    #     print(f"\nPermission denied: {error}")
-    # except OSError as error:
-    #     print(f"\nFilesystem error: {error}")
-    # except Exception as e:
-    #         print(f"unknown error: {e}")
 
 
 if __name__ == "__main__":
