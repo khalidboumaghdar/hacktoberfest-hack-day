@@ -1,6 +1,8 @@
 // L blasa lwahda fin kayn l'appel l backend (FastAPI).
 // POST /api/chat { question } -> { answer: string, sources: [{ title, page, url }] }
 export async function askBackend(question) {
+  console.log(question)
+  
   const res = await fetch("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

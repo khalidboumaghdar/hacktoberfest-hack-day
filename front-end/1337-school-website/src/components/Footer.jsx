@@ -29,7 +29,7 @@ export default function Footer() {
       </div>
       <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4 text-[11px] text-white/70">
         <span>© 2025 1337. All rights reserved.</span>
-        <span className="font-semibold text-white">Build. Share. Grow.</span>
+        <span className="font-semibold text-white">By Tean khaliha ala alah</span>
       </div>
     </footer>
   );
