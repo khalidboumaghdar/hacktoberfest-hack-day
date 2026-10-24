@@ -31,17 +31,17 @@ class CLI:
             ".txt" : TextChunker(),
             ".md" : MarkdownChunker(),
         }
-        pbar_chunk = tqdm(total=meta_data["chunked_files"], desc="Chunking: ")
+        # pbar_chunk = tqdm(total=meta_data["chunked_files"], desc="Chunking: ")
         for ext, files in files_by_extension.items():
             for file in files:
                 extention[ext].chunk(file, max_chunk_size)
-                pbar_chunk.update(1)
+                # pbar_chunk.update(1)
                 #the issue is that {rate} is None when the progress bar starts
                 # (before any items are processed), and you can't format None with .0f
-                if pbar_chunk.n > 0:
-                    rate = pbar_chunk.n / pbar_chunk.format_dict['elapsed']
-                    pbar_chunk.set_postfix_str(f"{int(rate)} file/s")
-        pbar_chunk.close()
+        #         if pbar_chunk.n > 0:Q
+        #             rate = pbar_chunk.n / pbar_chunk.format_dict['elapsed']
+        #             pbar_chunk.set_postfix_str(f"{int(rate)} file/s")
+        # pbar_chunk.close()
         
         chunker_obj = extention[".md"]
         processed_data = chunker_obj.get_processed_data()

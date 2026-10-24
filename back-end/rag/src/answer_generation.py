@@ -16,6 +16,8 @@ def answer_generator(query: str, context: list[str]):
         device_map="auto"
     )
 
+    
+
     context_text = "\n\n".join(context)
     content = f"""
     You are a factual assistant.

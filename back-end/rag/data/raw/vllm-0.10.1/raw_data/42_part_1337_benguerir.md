@@ -50,26 +50,14 @@ Join the world’s largest network of IT schools
 
 [Join our teams](https://ft42.notion.site/42-International-JobBoard-6ccd9d830b8b4528b65ab4c55b085266)
 
-[Back to top](https://www.42network.org/campus/1337-ben-guerir/#top)
-
-[Back to top](https://www.42network.org/campus/1337-ben-guerir/#top)
 
 **_42_ 
 **96, boulevard Bessières 
 75017 Paris
 
-About 42
-
-Find a campus
-
-Join the network
-
-Follow 42
 
 [Linkedin](https://www.linkedin.com/school/42network/) [Youtube](https://www.youtube.com/@42TheNetwork) [Facebook](https://www.facebook.com/42Network) [Instagram](https://www.instagram.com/42_network/) [X-twitter](https://x.com/42Network) [Medium](https://42network.medium.com/)
 
 [Contact us](mailto:comm@42.fr)
 
 [Contact us](mailto:comm@42.fr)
-
-**© 2026 Association 42 – All rights reserved.**

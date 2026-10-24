@@ -9,7 +9,7 @@ install:
 	$(PYTHON) -m pip install $(MODULE)
 
 index:
-	${UV} run $(PYTHON) -m src index --max_chunk_size 2000
+	${UV} run $(PYTHON) -m src index --max_chunk_size 1000
 
 run:
 	${UV} run $(PYTHON) -m src index --max_chunk_size 2000

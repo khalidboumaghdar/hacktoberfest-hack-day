@@ -9,6 +9,7 @@ dependencies = [
     "bitsandbytes>=0.50.2",
     "bm25s[full]>=0.3.11",
     "fire>=0.7.1",
+    "jax[cuda13]>=0.6.2",
     "langchain-text-splitters>=1.1.2",
     "pandas>=2.3.3",
     "pydantic>=2.13.5",
