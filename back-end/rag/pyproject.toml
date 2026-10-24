@@ -1,0 +1,19 @@
+[project]
+name = "rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "accelerate>=1.15.0",
+    "bm25s[full]>=0.3.11",
+    "fire>=0.7.1",
+    "langchain-text-splitters>=1.1.2",
+    "pandas>=2.3.3",
+    "pydantic>=2.13.5",
+    "pystemmer>=3.1.0",
+    "scikit-learn>=1.7.2",
+    "tiktoken>=0.14.0",
+    "torch>=2.14.1",
+    "transformers>=5.19.0",
+]
