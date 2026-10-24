@@ -5,6 +5,8 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import schoolImage from "../assets/images/1337_cum.png";
+import Studentimg from "../assets/images/students_learning_reference.png"
 
 const FEATURES = [
   { icon: Code2, title: "Project-Based Learning", text: "Learn by building real projects from day one." },
@@ -43,7 +45,7 @@ export default function Home() {
         {/* ---------- Navbar + Hero ---------- */}
         <header className="relative bg-navy-950 text-white">
           <img
-            src="/hero.jpg"
+            src={schoolImage}
             alt=""
             className="absolute inset-0 h-full w-full object-cover opacity-60"
             onError={(e) => (e.currentTarget.style.display = "none")}
@@ -92,7 +94,7 @@ export default function Home() {
           <div className="mt-5 grid items-center gap-8 md:grid-cols-2">
             <div className="aspect-[16/10] overflow-hidden rounded-lg bg-gradient-to-br from-navy-800 to-brand">
               <img
-                src="/students.jpg"
+                src= {Studentimg}
                 alt="Students coding together at 1337"
                 className="h-full w-full object-cover"
                 onError={(e) => (e.currentTarget.style.display = "none")}
